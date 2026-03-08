@@ -223,3 +223,41 @@ To correct this, each subsequent round:
 This iterates until no `k` wants to switch (a fixed point) or `max_rounds` is reached. Candidates are prioritised by the size of the available improvement.
 
 The `k = 1` entry is never re-optimised, since its SDP solution is already globally optimal.
+
+Example of an optimisation history:
+```
+round 1/5 k=3 start=k1 [1/1]:   8%|▊         | 376/5000 [01:14<15:13,  5.06it/s, best=0.626284, epoch=377, lr=1.00e-05, success=0.626284]
+round 1/5 k=5 start=k3 [1/1]:   7%|▋         | 366/5000 [01:12<15:18,  5.05it/s, best=0.701666, epoch=367, lr=1.00e-05, success=0.701666]
+round 1/5 k=7 start=k5 [1/1]:   7%|▋         | 344/5000 [01:08<15:29,  5.01it/s, best=0.752497, epoch=345, lr=1.00e-05, success=0.752497]
+round 1/5 k=9 start=k7 [1/1]:   7%|▋         | 365/5000 [01:14<15:44,  4.91it/s, best=0.788563, epoch=366, lr=1.00e-05, success=0.788563]
+round 1/5 k=11 start=k9 [1/1]:   7%|▋         | 368/5000 [01:17<16:15,  4.75it/s, best=0.815474, epoch=369, lr=1.00e-05, success=0.815474]
+round 1/5 k=13 start=k11 [1/1]:   7%|▋         | 364/5000 [01:21<17:11,  4.49it/s, best=0.836505, epoch=365, lr=1.00e-05, success=0.836505]
+round 1/5 k=15 start=k13 [1/1]:   7%|▋         | 368/5000 [01:28<18:32,  4.16it/s, best=0.853264, epoch=369, lr=1.00e-05, success=0.853264]
+round 1/5 k=17 start=k15 [1/1]:   7%|▋         | 350/5000 [01:34<20:50,  3.72it/s, best=0.866891, epoch=351, lr=1.00e-05, success=0.866891]
+round 1/5 k=19 start=k17 [1/1]:   7%|▋         | 342/5000 [01:47<24:28,  3.17it/s, best=0.878318, epoch=343, lr=1.00e-05, success=0.878318]
+round 1/5 k=21 start=k19 [1/1]:   7%|▋         | 362/5000 [02:12<28:20,  2.73it/s, best=0.888004, epoch=363, lr=1.00e-05, success=0.888004]
+round 1/5 k=23 start=k21 [1/1]:   7%|▋         | 370/5000 [02:40<33:34,  2.30it/s, best=0.896472, epoch=371, lr=1.00e-05, success=0.896472]
+round 1/5 k=25 start=k23 [1/1]:   6%|▋         | 320/5000 [02:44<40:07,  1.94it/s, best=0.903561, epoch=321, lr=1.00e-05, success=0.903561]
+round 1/5 k=27 start=k25 [1/1]:   7%|▋         | 346/5000 [03:33<47:54,  1.62it/s, best=0.909872, epoch=347, lr=1.00e-05, success=0.909872]
+round 1/5 k=29 start=k27 [1/1]:   6%|▋         | 321/5000 [03:57<57:42,  1.35it/s, best=0.915359, epoch=322, lr=1.00e-05, success=0.915359]
+round 2/5 k=21 start=adopt_k25 [1/1]:   7%|▋         | 340/5000 [02:04<28:22,  2.74it/s, best=0.888710, epoch=341, lr=1.00e-05, success=0.888710]
+round 2/5 k=19 start=adopt_k23 [1/1]:   6%|▋         | 323/5000 [01:42<24:39,  3.16it/s, best=0.878989, epoch=324, lr=1.00e-05, success=0.878989]
+round 2/5 k=25 start=adopt_k29 [1/1]:   7%|▋         | 335/5000 [02:54<40:36,  1.91it/s, best=0.904145, epoch=336, lr=1.00e-05, success=0.904145]
+round 2/5 k=23 start=adopt_k27 [1/1]:   7%|▋         | 329/5000 [02:22<33:41,  2.31it/s, best=0.896992, epoch=330, lr=1.00e-05, success=0.896992]
+round 2/5 k=27 start=adopt_k29 [1/1]:   6%|▌         | 309/5000 [03:09<47:53,  1.63it/s, best=0.910157, epoch=310, lr=1.00e-05, success=0.910157]
+round 2/5 k=17 start=adopt_k19 [1/1]:   6%|▋         | 313/5000 [01:25<21:18,  3.67it/s, best=0.867822, epoch=314, lr=1.00e-05, success=0.867822]
+round 2/5 k=15 start=adopt_k17 [1/1]:   7%|▋         | 330/5000 [01:19<18:50,  4.13it/s, best=0.854246, epoch=331, lr=1.00e-05, success=0.854246]
+round 2/5 k=11 start=adopt_k13 [1/1]:   7%|▋         | 330/5000 [01:10<16:33,  4.70it/s, best=0.815895, epoch=331, lr=1.00e-05, success=0.815895]
+round 3/5 k=13 start=adopt_k15 [1/1]:   6%|▋         | 314/5000 [01:10<17:32,  4.45it/s, best=0.837636, epoch=315, lr=1.00e-05, success=0.837636]
+round 3/5 k=29 start=adopt_k27 [1/1]:   6%|▌         | 306/5000 [03:45<57:43,  1.36it/s, best=0.915589, epoch=307, lr=1.00e-05, success=0.915589]
+round 3/5 k=23 start=adopt_k25 [1/1]:   6%|▌         | 312/5000 [02:14<33:38,  2.32it/s, best=0.897227, epoch=313, lr=1.00e-05, success=0.897227]
+round 3/5 k=21 start=adopt_k23 [1/1]:   6%|▋         | 320/5000 [01:57<28:32,  2.73it/s, best=0.889183, epoch=321, lr=1.00e-05, success=0.889183]
+round 3/5 k=19 start=adopt_k21 [1/1]:   6%|▋         | 324/5000 [01:42<24:41,  3.16it/s, best=0.879598, epoch=325, lr=1.00e-05, success=0.879598]
+round 3/5 k=27 start=adopt_k25 [1/1]:   6%|▌         | 309/5000 [03:08<47:47,  1.64it/s, best=0.910309, epoch=310, lr=1.00e-05, success=0.910309]
+round 4/5 k=17 start=adopt_k19 [1/1]:   6%|▋         | 323/5000 [01:27<21:13,  3.67it/s, best=0.868223, epoch=324, lr=1.00e-05, success=0.868223]
+round 4/5 k=25 start=adopt_k27 [1/1]:   6%|▌         | 309/5000 [02:37<39:56,  1.96it/s, best=0.904335, epoch=310, lr=1.00e-05, success=0.904335]
+round 4/5 k=23 start=adopt_k21 [1/1]:   6%|▌         | 312/5000 [02:14<33:44,  2.32it/s, best=0.897388, epoch=313, lr=1.00e-05, success=0.897388]
+round 5/5 k=27 start=adopt_k25 [1/1]:   6%|▌         | 305/5000 [03:09<48:30,  1.61it/s, best=0.910526, epoch=306, lr=1.00e-05, success=0.910526]
+round 5/5 k=21 start=adopt_k23 [1/1]:   6%|▌         | 305/5000 [01:52<28:54,  2.71it/s, best=0.889322, epoch=306, lr=1.00e-05, success=0.889322]
+round 5/5 k=29 start=adopt_k25 [1/1]:   6%|▌         | 312/5000 [03:52<58:07,  1.34it/s, best=0.915862, epoch=313, lr=1.00e-05, success=0.915862]  
+```
