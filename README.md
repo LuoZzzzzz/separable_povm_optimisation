@@ -162,15 +162,6 @@ The overall success rate is:
 P(success) = ∑_s max_c J(c, s)
 ```
 
-In code:
-
-```python
-joint = likelihoods * priors.view(-1, 1)
-best_per_s, _ = torch.max(joint, dim=0)
-success = best_per_s.sum()
-loss = -success
-```
-
 ---
 
 ## k = 1 Baseline
